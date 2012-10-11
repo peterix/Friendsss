@@ -1,4 +1,3 @@
-/*
   Copyright (C) 2012 Petr Mrázek
 
   This software is provided 'as-is', without any express or implied
@@ -18,12 +17,4 @@
   3. This notice may not be removed or altered from any source distribution.
 
   Petr Mrázek <peterix@gmail.com>
- */
 
-package peterix.friendsss.client;
-
-import net.minecraftforge.client.MinecraftForgeClient;
-import peterix.friendsss.CommonProxy;
-
-public class ClientProxy extends CommonProxy
-{}
