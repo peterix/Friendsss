@@ -22,8 +22,6 @@
 
 package peterix.friendsss;
 
-import java.lang.reflect.Field;
-
 import net.minecraft.src.EntityGhast;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;

@@ -39,6 +39,7 @@ public class CreeperUpdateEvent
             net.minecraft.src.EntityCreeper creeper = (EntityCreeper) event.entityLiving;
             try
             {
+                // TODO: This needs to be fixed when MC obfuscation changes
                 Field sinceStarted = creeperClass.getDeclaredField("d");
                 sinceStarted.setAccessible(true);
                 int value = sinceStarted.getInt(creeper);

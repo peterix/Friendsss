@@ -26,19 +26,13 @@ import java.lang.reflect.Field;
 import java.util.logging.Level;
 
 import net.minecraft.src.Block;
-import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
-
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
@@ -82,9 +76,7 @@ public class Friendsss
 
         if (NERF_ENDERMEN)
         {
-            // get enderman class
             Class endermanClass = net.minecraft.src.EntityEnderman.class;
-            // get the carriableBlocks field
             try
             {
                 // steal only flowers. flowers are pretty :D
@@ -109,7 +101,6 @@ public class Friendsss
             // nerf them green guys
             try
             {
-                // unprotect the variable
                 MinecraftForge.EVENT_BUS.register(new CreeperUpdateEvent());
                 FMLLog.log(Level.INFO, "Sucessfully nerfed creepers.");
 
@@ -125,10 +116,8 @@ public class Friendsss
             // nerf ghasts
             try
             {
-                // unprotect the variable
                 MinecraftForge.EVENT_BUS.register(new GhastUpdateEvent());
                 FMLLog.log(Level.INFO, "Sucessfully nerfed ghasts.");
-
             }
             catch (Exception e)
             {
