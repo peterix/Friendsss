@@ -35,6 +35,7 @@ import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 
 @Mod(modid = "Friendsss", name = "Friendsss", version = "0.0.1")
 @NetworkMod(clientSideRequired = false, serverSideRequired = true)
@@ -44,6 +45,7 @@ public class Friendsss
     boolean                   NERF_CREEPERS;
     boolean                   NERF_ENDERMEN;
     boolean                   NERF_GHASTS;
+    boolean                   PROTECT_VILLAGERS;
 
     // The instance of your mod that Forge uses.
     @Instance("Friendsss")
@@ -64,6 +66,7 @@ public class Friendsss
             NERF_CREEPERS = cfg.get(Configuration.CATEGORY_GENERAL, "nerfCreepers", true).getBoolean(true);
             NERF_ENDERMEN = cfg.get(Configuration.CATEGORY_GENERAL, "nerfEndermen", true).getBoolean(true);
             NERF_GHASTS = cfg.get(Configuration.CATEGORY_GENERAL, "nerfGhasts", true).getBoolean(true);
+            PROTECT_VILLAGERS = cfg.get(Configuration.CATEGORY_GENERAL, "protectVillagers", true).getBoolean(true);
         }
         catch (Exception e)
         {
@@ -83,9 +86,7 @@ public class Friendsss
                 boolean[] carriableBlocks = new boolean[4096];
                 carriableBlocks[Block.plantYellow.blockID] = true;
                 carriableBlocks[Block.plantRed.blockID] = true;
-
-                // TODO: This needs to be fixed when MC obfuscation changes
-                Field carriableBlocksField = endermanClass.getField("d");
+                Field carriableBlocksField = ReflectionHelper.findField(endermanClass, "carriableBlocks");
                 carriableBlocksField.set(null, carriableBlocks);
                 FMLLog.log(Level.INFO, "Sucessfully nerfed endermen.");
 
@@ -122,6 +123,19 @@ public class Friendsss
             catch (Exception e)
             {
                 FMLLog.log(Level.WARNING, "Ghast nerf failed:");
+                e.printStackTrace();
+            }
+        }
+        if (PROTECT_VILLAGERS)
+        {
+            try
+            {
+                MinecraftForge.EVENT_BUS.register(new VillagerTargettedEvent());
+                FMLLog.log(Level.INFO, "Now protecting villagers from attacks.");
+            }
+            catch (Exception e)
+            {
+                FMLLog.log(Level.WARNING, "Unable to protect villagers...");
                 e.printStackTrace();
             }
         }

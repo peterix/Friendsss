@@ -23,31 +23,39 @@
 package peterix.friendsss;
 
 import java.lang.reflect.Field;
-import cpw.mods.fml.relauncher.ReflectionHelper;
-import net.minecraft.src.EntityCreeper;
-import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 
-public class CreeperUpdateEvent
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import net.minecraft.src.EntityLiving;
+import net.minecraft.src.EntityVillager;
+import net.minecraft.src.EntityZombie;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+
+public class VillagerTargettedEvent
 {
+	Class VillagerClass;
+	Class ZombieClass;
+	Field attackTarget;
+	public VillagerTargettedEvent()
+	{
+        attackTarget = ReflectionHelper.findField(EntityLiving.class, "attackTarget");
+        attackTarget.setAccessible(true);
+        VillagerClass = EntityVillager.class;
+        ZombieClass = EntityZombie.class;
+	}
     @ForgeSubscribe
-    public void onLivingEvent(LivingUpdateEvent event)
+    public void onLivingEvent(LivingSetAttackTargetEvent event)
     {
-        Class creeperClass = net.minecraft.src.EntityCreeper.class;
-        if (event.entityLiving.getClass() == creeperClass)
+    	if(event.target == null || event.entity == null)
+    		return;
+        if (event.target.getClass() == VillagerClass && event.entity.getClass() == ZombieClass)
         {
-            net.minecraft.src.EntityCreeper creeper = (EntityCreeper) event.entityLiving;
+        	EntityZombie zombocom = (EntityZombie) event.entity;
             try
             {
-                // TODO: This needs to be fixed when MC obfuscation changes
-                Field sinceStarted = ReflectionHelper.findField(creeperClass, "timeSinceIgnited");
-                sinceStarted.setAccessible(true);
-                int value = sinceStarted.getInt(creeper);
-                if (value > 25) value = 25;
-                sinceStarted.setInt(creeper, value);
-            }
-            catch (Exception e)
-            {}
+            	attackTarget.set(zombocom, null);
+			}
+            catch (Exception e){}
         }
     }
 }
