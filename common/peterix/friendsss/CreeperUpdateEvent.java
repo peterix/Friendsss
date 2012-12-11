@@ -30,18 +30,21 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 
 public class CreeperUpdateEvent
 {
+	Class creeperClass = net.minecraft.src.EntityCreeper.class;
+	Field sinceStarted;
+	public CreeperUpdateEvent()
+	{
+		sinceStarted = ReflectionHelper.findField(creeperClass, "timeSinceIgnited");
+		sinceStarted.setAccessible(true);
+	}
     @ForgeSubscribe
     public void onLivingEvent(LivingUpdateEvent event)
     {
-        Class creeperClass = net.minecraft.src.EntityCreeper.class;
         if (event.entityLiving.getClass() == creeperClass)
         {
-            net.minecraft.src.EntityCreeper creeper = (EntityCreeper) event.entityLiving;
+            EntityCreeper creeper = (EntityCreeper) event.entityLiving;
             try
             {
-                // TODO: This needs to be fixed when MC obfuscation changes
-                Field sinceStarted = ReflectionHelper.findField(creeperClass, "timeSinceIgnited");
-                sinceStarted.setAccessible(true);
                 int value = sinceStarted.getInt(creeper);
                 if (value > 25) value = 25;
                 sinceStarted.setInt(creeper, value);

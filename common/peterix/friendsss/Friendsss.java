@@ -37,7 +37,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 
-@Mod(modid = "Friendsss", name = "Friendsss", version = "0.0.1")
+@Mod(modid = "Friendsss", name = "Friendsss", version = "0.0.2")
 @NetworkMod(clientSideRequired = false, serverSideRequired = true)
 public class Friendsss
 {

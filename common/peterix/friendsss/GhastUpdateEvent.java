@@ -28,10 +28,10 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 
 public class GhastUpdateEvent
 {
+	Class ghastClass = net.minecraft.src.EntityGhast.class;
     @ForgeSubscribe
     public void onLivingEvent(LivingUpdateEvent event)
     {
-        Class ghastClass = net.minecraft.src.EntityGhast.class;
         if (event.entityLiving.getClass() == ghastClass)
         {
             net.minecraft.src.EntityGhast ghast = (EntityGhast) event.entityLiving;
