@@ -86,7 +86,7 @@ public class Friendsss
                 boolean[] carriableBlocks = new boolean[4096];
                 carriableBlocks[Block.plantYellow.blockID] = true;
                 carriableBlocks[Block.plantRed.blockID] = true;
-                Field carriableBlocksField = ReflectionHelper.findField(endermanClass, "carriableBlocks");
+                Field carriableBlocksField = ReflectionHelper.findField(endermanClass, "carriableBlocks", "d");
                 carriableBlocksField.set(null, carriableBlocks);
                 FMLLog.log(Level.INFO, "Sucessfully nerfed endermen.");
 

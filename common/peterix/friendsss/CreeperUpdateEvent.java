@@ -34,7 +34,7 @@ public class CreeperUpdateEvent
 	Field sinceStarted;
 	public CreeperUpdateEvent()
 	{
-		sinceStarted = ReflectionHelper.findField(creeperClass, "timeSinceIgnited");
+		sinceStarted = ReflectionHelper.findField(creeperClass, "timeSinceIgnited", "e");
 		sinceStarted.setAccessible(true);
 	}
     @ForgeSubscribe

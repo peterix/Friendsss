@@ -38,7 +38,7 @@ public class VillagerTargettedEvent
 	Field attackTarget;
 	public VillagerTargettedEvent()
 	{
-        attackTarget = ReflectionHelper.findField(EntityLiving.class, "attackTarget");
+        attackTarget = ReflectionHelper.findField(EntityLiving.class, "attackTarget", "bM");
         attackTarget.setAccessible(true);
         VillagerClass = EntityVillager.class;
         ZombieClass = EntityZombie.class;
@@ -48,7 +48,7 @@ public class VillagerTargettedEvent
     {
     	if(event.target == null || event.entity == null)
     		return;
-        if (event.target.getClass() == VillagerClass && event.entity.getClass() == ZombieClass)
+        if (event.target.getClass() == VillagerClass && ZombieClass.isAssignableFrom(event.entity.getClass()))
         {
         	EntityZombie zombocom = (EntityZombie) event.entity;
             try
