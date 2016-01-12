@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2012 Petr Mrázek
+  Copyright (C) 2015 Petr Mrázek
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +20,17 @@
   Petr Mrázek <peterix@gmail.com>
  */
 
-package peterix.friendsss;
+package org.dethware.friendsss;
 
-public class CommonProxy
-{}
+import cpw.mods.fml.client.config.GuiConfig;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.common.config.ConfigElement;
+import net.minecraftforge.common.config.Configuration;
+
+public class ConfigGui extends GuiConfig
+{
+    public ConfigGui(GuiScreen parent)
+    {
+        super(parent, new ConfigElement(Main.configFile.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(), Main.MODID, false, false, "Friendsss");
+    }
+}

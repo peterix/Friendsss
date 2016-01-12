@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2012 Petr Mrázek
+  Copyright (C) 2015 Petr Mrázek
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -20,10 +20,37 @@
   Petr Mrázek <peterix@gmail.com>
  */
 
-package peterix.friendsss.client;
+package org.dethware.friendsss;
 
-import net.minecraftforge.client.MinecraftForgeClient;
-import peterix.friendsss.CommonProxy;
+import cpw.mods.fml.client.IModGuiFactory;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 
-public class ClientProxy extends CommonProxy
-{}
+import java.util.Set;
+
+public class GuiFactory implements IModGuiFactory
+{
+    @Override
+    public void initialize(Minecraft minecraftInstance)
+    {
+
+    }
+
+    @Override
+    public Class<? extends GuiScreen> mainConfigGuiClass()
+    {
+        return ConfigGui.class;
+    }
+
+    @Override
+    public Set<RuntimeOptionCategoryElement> runtimeGuiCategories()
+    {
+        return null;
+    }
+
+    @Override
+    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element)
+    {
+        return null;
+    }
+}

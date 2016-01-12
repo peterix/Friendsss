@@ -1,21 +1,16 @@
 [
 {
-  "modid": "Friendsss",
+  "modid": "org.dethware.friendsss",
   "name": "Friendsss",
   "description": "Prevents creepers, endermen and ghasts from destroying the landscape and zombies from killing your villagers.",
-  "version": "0.0.2",
-  "mcversion": "1.4.5",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
   "url": "http://dethware.org/friendsss/",
   "updateUrl": "",
-  "authors": [
-    "peterix"
-  ],
+  "authorList": ["peterix"],
   "credits": "",
   "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"",
-  "dependencies": [
-  ]
+  "screenshots": [],
+  "dependencies": []
 }
 ]

@@ -1,0 +1,8 @@
+friendsss.config.nerfGhasts=Nerf Ghasts
+friendsss.config.nerfGhasts.tooltip=Make ghasts not spit fireballs (default).
+friendsss.config.protectVillagers=Protect Villagers
+friendsss.config.protectVillagers.tooltip=Make zombies not attack villagers (default).
+friendsss.config.nerfEndermen=Nerf Endermen
+friendsss.config.nerfEndermen.tooltip=Make endermen not pick up things (default).
+friendsss.config.nerfCreepers=Nerf Creepers
+friendsss.config.nerfCreepers.tooltip=Make creepers not explode (default).
